@@ -1,6 +1,6 @@
 {
   "name": "pso2tools",
-  "version": "1.0.0",
+  "version": "0.0.1-alpha",
   "description": "PSO2 useful tools",
   "main": "index.js",
   "scripts": {
@@ -13,6 +13,10 @@
   "dependencies": {
     "electron": "^1.7.5",
     "sqlite3": "^3.1.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jacky9813/pso2Tools.git"
   },
   "devDependencies": {
     "electron-packager": "^9.0.0",
