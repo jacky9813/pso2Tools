@@ -1,6 +1,10 @@
 
 
 class pso2Character{
+    get version(){
+        return "0.0.2-alpha";
+    }
+    
     constructor(dbFile=null){
         if(dbFile=="" || dbFile==null){
             throw "No database file is specified";
@@ -21,8 +25,29 @@ class pso2Character{
                 `cid` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
                 `CName` TEXT NULL,\
                 `lastTATime` DATETIME NULL,\
-                `classLv` TEXT NULL);");
+                `classLv` TEXT NULL,\
+                `memo` TEXT NULL);");
+            this._db.run("CREATE TABLE IF NOT EXISTS `pso2Tools` (\
+                `version` TEXT NULL,\
+                `__ignore_this` INTEGER PRIMARY KEY DEFAULT 1 CHECK(__ignore_this=1) \
+            )",(e,r)=>{
+                this.run("INSERT INTO pso2Tools(version) VALUES (?)",[this.version]);
+            });
+        }else{
+            //Check database version
+            this._db.all("SELECT * FROM pso2Tools",(e,r)=>{
+                if(e!=null){
+                    //Error occured, no pso2Tools information table found
+                    pso2cDBUpgrade(this,"");
+                }else{
+                    if(semver.lt(r[0].version,this.version)){
+                        // User running at lower version
+                        pso2cDBUpgrade(this,r[0].version);
+                    }
+                }
+            })
         }
+
     }
 
     getChList(cbk=null){
@@ -153,5 +178,16 @@ class pso2Character{
             }
         });
         this._db.run("UPDATE characters SET classLv=? WHERE cid=?",[out,cid]);
+    }
+
+    setMemo(cid=null,memo=null,cbk=null){
+        if(cid==null || (!$.isNumeric(cid))){
+            throw "Invalid format for cid, this should be a id number of one character";
+            return;
+        }
+        if(typeof(cid)!="number"){
+            cid = parseInt(cid,10);
+        }
+        this._db.run("UPDATE characters SET memo=? WHERE cid=?",[memo, cid],(e,r)=>{if(e!=null&&typeof(cbk)=="function"){cbk();}else{if(e!=null){alert(e);}}});
     }
 }

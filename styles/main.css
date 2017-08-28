@@ -61,3 +61,8 @@ div.tab button[active] {
     border-radius: 4px;
     padding: 10px;
 }
+
+.footer{
+    padding: 50px;
+    text-align: center;
+}

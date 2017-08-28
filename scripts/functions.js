@@ -20,7 +20,7 @@ function newTab(id,title,content){
         return;
     }
     $(".tab").append('<button class="tablinks" x-target="'+id+'" onclick="openTab(event)"'+($(".tablinks").length==0?" default":"")+'>'+title+'</button>');
-    $("body").append('<div id="'+id+'" class="tabcontent">'+content+'</div>');
+    $(".tabcontainers").append('<div id="'+id+'" class="tabcontent">'+content+'</div>');
 }
 $(document).ready(function(){
     $(".tablinks[default]").click();

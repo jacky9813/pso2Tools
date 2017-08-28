@@ -13,6 +13,10 @@ function classLvOnChange(e){
     }
     pso2c.setLevel(cid,clsList);
 }
+function chMemoOnChange(e,cid){
+    pso2c.setMemo(cid,e.currentTarget.value);
+}
+
 
 newTab("tab_list","キャラクターリスト","<button onclick=\"location.reload();\">もう一度読む</button><br><br><table id=\"tab_list_chList\"></table>");
 $("#tab_list_chList").append(`<tr><td><input type="text" placeholder="キャラ名前" id="newChName"></td><td><button onclick="pso2c.addCh($('#newChName').val(),()=>{location.reload()})">追加</button></td><td>TAクールダウン状態</td><td>TAクールダウン完成時間</td></tr>`);
@@ -70,6 +74,9 @@ pso2c.getChList((res)=>{
 
         content += `</div>`;
 
+        // memo Area
+        content += '<div>メモ：<br><textarea id="chMemo'+cid+'" onchange="chMemoOnChange(event,'+cid+');" style="max-width:100%;max-height:400px;width:100%;height:400px;">'+(r.memo==null?"":r.memo)+'</textarea>'
+
         content += `</div>`;
 
         newTab('tabCh'+cid,CName,content);
@@ -78,3 +85,4 @@ pso2c.getChList((res)=>{
     })
 })
 
+$(".footer").append('<span style="color:#CCC;">PSO2 Tools '+pso2c.version+'</span>');

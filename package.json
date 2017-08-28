@@ -12,6 +12,7 @@
   "license": "CC0-1.0",
   "dependencies": {
     "electron": "^1.7.5",
+    "semver": "^5.4.1",
     "sqlite3": "^3.1.9"
   },
   "repository": {
