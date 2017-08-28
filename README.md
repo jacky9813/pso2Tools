@@ -6,6 +6,9 @@
 - Time attack CO cool-down management
 - Memo for each characters (from 0.0.2-alpha)
 
+## How to backup
+The X:\Path\to\App\resources\pso2Tools.db is what you looking for
+
 ## Contribute
 - Point out a bug, idea of new feature on [GitHub Issues](https://github.com/jacky9813/pso2Tools/issues)
 

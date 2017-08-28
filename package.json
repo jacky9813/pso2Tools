@@ -1,6 +1,6 @@
 {
   "name": "pso2tools",
-  "version": "0.0.1-alpha",
+  "version": "0.0.2-alpha",
   "description": "PSO2 useful tools",
   "main": "index.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "build-windows": "electron-packager . --overwrite --asar=true --platform=win32 --arch=x64 --icon=images/appicon/win/appicon.ico --out=release-builds "
   },
   "author": "JackyCCC",
-  "license": "CC0-1.0",
+  "license": "Unlicense",
   "dependencies": {
     "electron": "^1.7.5",
     "semver": "^5.4.1",
