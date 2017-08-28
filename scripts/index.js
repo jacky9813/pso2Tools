@@ -14,8 +14,8 @@ function classLvOnChange(e){
     pso2c.setLevel(cid,clsList);
 }
 
-newTab("tab_list","キャラクターリスト","<button onclick=\"location.reload();\">もう一度読む</button><table id=\"tab_list_chList\"></table>");
-$("#tab_list_chList").append(`<tr><td><input type="text" placeholder="キャラ名前" id="newChName"></td><td><button onclick="pso2c.addCh($('#newChName').val(),()=>{location.reload()})">追加</button></td></tr>`);
+newTab("tab_list","キャラクターリスト","<button onclick=\"location.reload();\">もう一度読む</button><br><br><table id=\"tab_list_chList\"></table>");
+$("#tab_list_chList").append(`<tr><td><input type="text" placeholder="キャラ名前" id="newChName"></td><td><button onclick="pso2c.addCh($('#newChName').val(),()=>{location.reload()})">追加</button></td><td>TAクールダウン状態</td><td>TAクールダウン完成時間</td></tr>`);
 pso2c.getChList((res)=>{
     res.forEach((r)=>{
         var chLv = pso2c.solveLevel(r.classLv);
@@ -47,7 +47,7 @@ pso2c.getChList((res)=>{
         var nowStr = nowDateStr + "T" + nowTimeStr;
 
         //Generating row for list page
-        var out = `<tr><td>`+CName+`</td><td><button onclick="if(confirm('削除されます？')){pso2c.deleteCh(`+cid+`,()=>{location.reload();});}">削除</button></td><td>`+(taCDDone?"<span style=\"background:green;color:white;padding:5px;\">TA進行可能</span>":"<span style=\"padding:5px;background:red;color:white;\">TAクールダウン中</span>")+`</td></tr>`;
+        var out = `<tr><td>`+CName+`</td><td><button onclick="if(confirm('削除されます？')){pso2c.deleteCh(`+cid+`,()=>{location.reload();});}">削除</button></td><td>`+(taCDDone?"<span style=\"color:green;font-size: 15pt;\">\u25CF</span>TA進行可能</td><td>":("<span style=\"color:red;font-size: 15pt;\">\u25CF</span>TAクールダウン中</td><td>"+taCDDate.toLocaleString()))+`</td></tr>`;
         $("#tab_list_chList").append(out);
 
         //Adding new tab for detailed character information
@@ -62,7 +62,7 @@ pso2c.getChList((res)=>{
         //output TA
         content += `<div>`;
         content += `前回のTA：` + taDate.toLocaleString() + `<br>`;
-        content += `クールダウン状態：` + (taCDDone?"クールダウン完了":("クールダウン中 ("+taCDDate.toLocaleString()+"まで)")) + "<br>";
+        content += `クールダウン状態：` + (taCDDone?"<span style=\"color:green;font-size: 15pt;\">\u25CF</span>クールダウン完了":("<span style=\"color:red;font-size: 15pt;\">\u25CF</span>クールダウン中 ("+taCDDate.toLocaleString()+"まで)")) + "<br>";
         content += `<br>TA時間設定：<br>`;
         content += `<button onclick="pso2c.TArun(`+cid+`,null,()=>{location.reload();})">現在</button><br><br>`;
         content += `<input type="datetime-local" id="taTime`+cid+`" value="`+nowStr+`"><button onclick="pso2c.TArun(`+cid+`,$('#taTime`+cid+`').val(),()=>{location.reload();});">この時間でTAやった</button><br><br>`;

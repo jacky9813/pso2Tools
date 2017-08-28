@@ -10,6 +10,11 @@ tr:hover{
     background: #CCC;
 }
 
+td{
+    line-height: 15pt;
+    padding: 5px 10px;
+}
+
 div.tab {
     overflow: hidden;
     border: 1px solid #CCC;
