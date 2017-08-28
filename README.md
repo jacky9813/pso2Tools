@@ -1,6 +1,6 @@
 # PSO2 Tools
 
-![PSO2 Tools](https://user-images.githubusercontent.com/13483393/29775459-c9eb24c4-8c37-11e7-9605-215bf8307c0f.PNG)
+<p align="center"><img src="https://user-images.githubusercontent.com/13483393/29775459-c9eb24c4-8c37-11e7-9605-215bf8307c0f.PNG"></p>
 
 ## Features
 - Time attack CO cool-down management
