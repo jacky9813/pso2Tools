@@ -10,4 +10,4 @@
 - Point out a bug, idea of new feature on [GitHub Issues](https://github.com/jacky9813/pso2Tools/issues)
 
 ## License
-No license! Enjoy yourself to distrubute, copy, merge, modify!
+No license! Enjoy yourself to use, distrubute, copy, merge and even modify!
