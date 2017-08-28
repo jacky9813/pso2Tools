@@ -1,4 +1,4 @@
-# [unreleased version]
+# [0.0.2-alpha]
 ### New feature
 - A little memo for every character
 - Auto upgrade database to meet latest features
