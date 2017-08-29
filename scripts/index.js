@@ -17,6 +17,19 @@ function chMemoOnChange(e,cid){
     pso2c.setMemo(cid,e.currentTarget.value);
 }
 
+newTab("tab_links","リンク","");
+(function(){
+    //Generates list of links in links tab
+    var content = '<table><tr><td><input type="text" id="link-addLink" placeholder="新しいリンク"></td><td><button id="link-btnLinkAdd" onclick="pso2c.newLink($(\'#link-addLink\').val(),null,()=>{location.reload();});">追加</button></td></tr>';
+    var links = pso2c.getLinks((r)=>{
+        r.forEach((e) => {
+            content += `<tr><td><a href="#" onclick="electron.shell.openExternal('${e.link}')">${e.title}</a></td><td><button onclick="if(confirm('削除されます？')){pso2c.deleteLink(${e.pklink},()=>{location.reload();});}">削除</button></td></tr>`;
+        });
+        content += '</table>';
+        $("#tab_links").append(content);
+    });
+})();
+
 
 newTab("tab_list","キャラクターリスト","<button onclick=\"location.reload();\">もう一度読む</button><br><br><table id=\"tab_list_chList\"></table>");
 $("#tab_list_chList").append(`<tr><td><input type="text" placeholder="キャラ名前" id="newChName"></td><td><button onclick="pso2c.addCh($('#newChName').val(),()=>{location.reload()})">追加</button></td><td>TAクールダウン状態</td><td>TAクールダウン完成時間</td></tr>`);

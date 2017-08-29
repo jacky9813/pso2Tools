@@ -2,7 +2,7 @@
 
 class pso2Character{
     get version(){
-        return "0.0.2-alpha";
+        return "0.0.3-alpha";
     }
     
     constructor(dbFile=null){
@@ -31,7 +31,9 @@ class pso2Character{
                 `version` TEXT NULL,\
                 `__ignore_this` INTEGER PRIMARY KEY DEFAULT 1 CHECK(__ignore_this=1) \
             )",(e,r)=>{
-                this.run("INSERT INTO pso2Tools(version) VALUES (?)",[this.version]);
+                this.run("INSERT INTO pso2Tools(version) VALUES (?)",["0.0.2-alpha"],(e,r)=>{
+                    location.reload();
+                });
             });
         }else{
             //Check database version
@@ -189,5 +191,71 @@ class pso2Character{
             cid = parseInt(cid,10);
         }
         this._db.run("UPDATE characters SET memo=? WHERE cid=?",[memo, cid],(e,r)=>{if(e!=null&&typeof(cbk)=="function"){cbk();}else{if(e!=null){alert(e);}}});
+    }
+
+    getLinks(cbk=null){
+        if(typeof(cbk)!="function"){
+            throw "Calling this function without callback function is meaningless.";
+            return;
+        }
+        this._db.all("SELECT * FROM links",(e,r)=>{
+            if(e==null){
+                cbk(r);
+            }else{
+                throw e;
+            }
+        });
+    }
+
+    newLink(link,title=null,cbk=null){
+        if(typeof(link)!="string" || link.trim==""){
+            throw "Empty link";
+            return;
+        }
+        if(title==null){
+            // Fetching title
+            $("body").append("<iframe id=\"ifr-getTitle\" style=\"display:none;\" src=\""+link+"\"></iframe>");
+            $("#ifr-getTitle").on("load",()=>{
+                title=$("#ifr-getTitle")[0].contentDocument.title;
+                this._db.run("INSERT INTO links(link, title) VALUES (?,?)",[link,title],(e,r)=>{
+                    if(e==null){
+                        if(typeof(cbk)=="function"){
+                            cbk();
+                        }
+                    }else{
+                        throw e;
+                    }
+                });
+            });
+        }else{
+            this._db.run("INSERT INTO links(link, title) VALUES (?,?)",[link,title],(e,r)=>{
+                if(e==null){
+                    if(typeof(cbk)=="function"){
+                        cbk();
+                    }
+                }else{
+                    throw e;
+                }
+            });
+        }
+    }
+
+    deleteLink(linkID, cbk=null){
+        if(!$.isNumeric(linkID)){
+            throw "Expected an integer type for linkID";
+            return;
+        }
+        if(typeof(linkID)!="number"){
+            linkID = parseInt(linkID);
+        }
+        this._db.run("DELETE FROM links WHERE pklink=?",[linkID],(e,r)=>{
+            if(e==null){
+                if(typeof(cbk)=="function"){
+                    cbk();
+                }
+            }else{
+                throw e;
+            }
+        })
     }
 }

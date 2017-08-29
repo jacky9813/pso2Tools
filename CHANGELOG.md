@@ -1,3 +1,8 @@
+# [0.0.3-alpha]
+(not yet released)
+### New feature
+- A links page to store useful website links, and it auto fetches the title of that web page.
+
 # [0.0.2-alpha]
 (2017-08-29)
 ### New feature
