@@ -1,6 +1,6 @@
 {
   "name": "pso2tools",
-  "version": "0.0.2-alpha",
+  "version": "0.0.3-alpha",
   "description": "PSO2 useful tools",
   "main": "index.js",
   "scripts": {

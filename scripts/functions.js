@@ -22,6 +22,9 @@ function newTab(id,title,content){
     $(".tab").append('<button class="tablinks" x-target="'+id+'" onclick="openTab(event)"'+($(".tablinks").length==0?" default":"")+'>'+title+'</button>');
     $(".tabcontainers").append('<div id="'+id+'" class="tabcontent">'+content+'</div>');
 }
-$(document).ready(function(){
-    $(".tablinks[default]").click();
-});
+function refreshPage(){
+    var target = $(".tablinks[active]").attr("x-target");
+    var urlparam = new URLSearchParams(location.search.slice(1));
+    urlparam.set("target",target);
+    location.href = location.href.split("?")[0] + "?" + urlparam.toString();
+}
