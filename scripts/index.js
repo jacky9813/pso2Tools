@@ -64,7 +64,7 @@ pso2c.getChList((res)=>{
         var nowStr = nowDateStr + "T" + nowTimeStr;
 
         //Generating row for list page
-        var out = `<tr><td>`+CName+`</td><td><button onclick="if(confirm('削除されます？')){pso2c.deleteCh(`+cid+`,()=>{refreshPage();});}">削除</button></td><td>`+(taCDDone?"<span style=\"color:green;font-size: 15pt;\">\u25CF</span>TA進行可能</td><td>":("<span style=\"color:red;font-size: 15pt;\">\u25CF</span>TAクールダウン中</td><td>"+taCDDate.toLocaleString()))+`</td></tr>`;
+        var out = `<tr id="chList${cid}"><td>`+CName+`</td><td><button onclick="if(confirm('削除されます？')){pso2c.deleteCh(`+cid+`,()=>{refreshPage();});}">削除</button></td><td>`+(taCDDone?"<span style=\"color:green;font-size: 15pt;\">\u25CF</span>TA進行可能</td><td>":("<span style=\"color:red;font-size: 15pt;\">\u25CF</span>TAクールダウン中</td><td>"+taCDDate.toLocaleString()))+`</td></tr>`;
         $("#tab_list_chList").append(out);
 
         //Adding new tab for detailed character information

@@ -19,19 +19,20 @@ class pso2Character{
             var newdb = true;
         }
         this._db = new sqlite3.Database(dbFile);
+        var clsInstance = this;
         if(newdb){
             // Create new database
-            this._db.run("CREATE TABLE IF NOT EXISTS `characters` (\
+            clsInstance._db.run("CREATE TABLE IF NOT EXISTS `characters` (\
                 `cid` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,\
                 `CName` TEXT NULL,\
                 `lastTATime` DATETIME NULL,\
                 `classLv` TEXT NULL,\
                 `memo` TEXT NULL);");
-            this._db.run("CREATE TABLE IF NOT EXISTS `pso2Tools` (\
+                clsInstance._db.run("CREATE TABLE IF NOT EXISTS `pso2Tools` (\
                 `version` TEXT NULL,\
                 `__ignore_this` INTEGER PRIMARY KEY DEFAULT 1 CHECK(__ignore_this=1) \
             )",(e,r)=>{
-                this.run("INSERT INTO pso2Tools(version) VALUES (?)",["0.0.2-alpha"],(e,r)=>{
+                clsInstance._db.run("INSERT INTO pso2Tools(version) VALUES (?)",["0.0.2-alpha"],(e,r)=>{
                     location.reload();
                 });
             });
