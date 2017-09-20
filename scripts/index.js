@@ -3,6 +3,9 @@
 var dbFile = "../pso2Tools.db";
 var pso2c = new pso2Character(dbFile);
 
+var ext = new exTower(pso2c._db);
+ext.checkExist(null,true);
+
 function classLvOnChange(e){
     var handle = e.currentTarget;
     var cid = $(handle).attr("x-cid");
@@ -15,6 +18,17 @@ function classLvOnChange(e){
 }
 function chMemoOnChange(e,cid){
     pso2c.setMemo(cid,e.currentTarget.value);
+}
+
+function exTowerOnChange(e){
+    var handle = e.currentTarget;
+    var cid = $(handle).attr("data-cid");
+    var towerList = ext.createEmptyList();
+    var tgts = $("input.exTower[data-cid="+cid+"]");
+    for(var i=0;i<tgts.length;i++){
+        towerList[$(tgts[i]).attr("data-tower")] = parseInt($(tgts[i]).val());
+    }
+    ext.setStatus(cid,towerList);
 }
 
 newTab("tab_links","リンク","");
@@ -94,11 +108,19 @@ pso2c.getChList((res)=>{
 
         newTab('tabCh'+cid,CName,content);
 
-        
+        ext.getStatus(cid,(r)=>{
+            var domout = "<div>エクストリームステータス：<table>";
+            Object.keys(ext.displayName).forEach((tw)=>{
+                domout += ("<tr><td>" + ext.displayName[tw] + "</td><td><input onchange=\"exTowerOnChange(event);\" class=\"exTower\" data-cid=\""+cid.toString()+"\" data-tower=\""+tw+"\" type=\"number\" min=\"0\" max=\"65\" step=\"5\" value=\""+r[tw]+"\"></td></tr>");
+            });
+            domout += "</table></div>";
+            $("#tabCh"+cid).children(".gridwrapper").append(domout);
+        });
     })
 })
 
 $(".footer").append('<span style="color:#CCC;">PSO2 Tools '+pso2c.version+'</span>');
+
 
 $(document).ready(()=>{
     setTimeout(()=>{
