@@ -26,7 +26,7 @@ function CreateWindow(){
     });
     
     // To open DevTools, uncomment the line below
-    mainWindow.webContents.openDevTools();
+    //mainWindow.webContents.openDevTools();
 
     mainWindow.setMenu(null);
 

@@ -1,7 +1,8 @@
 # [0.0.3-alpha]
-(not yet released)
+(2017-09-20)
 ### New feature
 - A links page to store useful website links, and it auto fetches the title of that web page.
+- Extreme Quest level logging
 
 ### Improved
 - After refresh the page, automatically opens the tab was active before refresh.
