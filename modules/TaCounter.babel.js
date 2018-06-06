@@ -3,10 +3,21 @@ class TaCounterSetTime extends React.Component{
         super(props);
     }
     handleClick(){
-        this.props.click(null);
+        this.props.click();
     }
     render(){
-        return (<button key={"TaCounterSetTimeNow"+this.props.cid.toString()} onClick={()=>{this.handleClick();}}>{this.props.label}</button>);
+        return (<button key={"TaCounterSetTime"+(this.props.type?this.props.type:"")+this.props.cid.toString()} onClick={()=>{this.handleClick();}}>{this.props.label}</button>);
+    }
+}
+class TaCounterDateSelector extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            "value": (this.props.value)?this.props.value:((new Date()).toISOString())
+        }
+    }
+    render(){
+        return (<input type={"datetime-local"} id={"TaCounterDateSel"+this.props.cid.toString()} key={"TaCounterDateSel"+this.props.cid.toString()} defaultValue={this.state.value}/>);
     }
 }
 class TaCounter extends pso2tools_module{
@@ -22,7 +33,7 @@ class TaCounter extends pso2tools_module{
     getTATime(cid){
         return this.db.run("SELECT lastTATime FROM characters WHERE cid = ?", [Math.floor(cid)])[0].lastTATime;
     }
-    setTATTime(cid, time = null){
+    setTATime(cid, time = null){
         if(time == null){
             time = Date.now() / 1000;
         }
@@ -34,7 +45,9 @@ class TaCounter extends pso2tools_module{
         var cdComplete = Date.now() > (lastTaTime+ (3600*166))*1000
         return (<div>{"Previous TA Time: "+(new Date(lastTaTime*1000)).toLocaleString()}<br/>
         <span style={{color: cdComplete?"green":"red"}}>{"Cool Down Complete time: "+(new Date(lastTaTime*1000+ (1000*3600*166))).toLocaleString()}</span><br />
-        <TaCounterSetTime cid={cid} time={"now"} label={"Just done TA"} click={(time)=>{this.setTATTime(cid,time)}}/>
+        <TaCounterSetTime cid={cid} type={"Now"} label={"Just done TA"} click={()=>{this.setTATime(cid,null)}}/><br/>
+        <TaCounterDateSelector cid={cid} /><br/>
+        <TaCounterSetTime cid={cid} type={"CDComplete"} label={"CD done at"} click={()=>{this.setTATime(cid,(new Date(document.querySelector("#TaCounterDateSel"+cid.toString()).value)).getTime()/1000-(3600*166))}} />
         </div>);
     }
 
