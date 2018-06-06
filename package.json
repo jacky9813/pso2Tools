@@ -6,7 +6,8 @@
   "scripts": {
     "start": "electron .",
     "postinstall": "electron-rebuild",
-    "build-windows": "electron-packager . --overwrite --asar=true --platform=win32 --arch=x64 --icon=images/appicon/win/appicon.ico --out=release-builds "
+    "build-windows": "electron-packager . --overwrite --asar=true --platform=win32 --arch=x64 --icon=images/appicon/win/appicon.ico --out=release-builds ",
+    "dbUpgrade": "node upgradeDatabase.js"
   },
   "author": "JackyCCC",
   "license": "Unlicense",

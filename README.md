@@ -3,9 +3,12 @@
 ## Attention
 This version of PSO2 Utility's database is not compatible with previous version's file.
 
-Users have to input all the data again to switch version.
+Users has to upgrade the old database file by following:
 
-(Or maybe I'll release a tool afterward)
+(make sure old database pso2Tools.db is in the same directory as package.json)
+```bash
+$npm run dbUpgrade
+```
 
 ## Features
 - Highly modulized feature
@@ -17,7 +20,7 @@ Users have to input all the data again to switch version.
 - TaCounter module - Set TA mission complete time, calculate the time TA missions will be available again
 
 ## How to backup the data
-The /Path/to/App/pso2Tools.db is what you looking for
+The /Path/to/App/pso2db.db is what you looking for
 
 ## Contribute
 - Point out a bug, idea of new feature on [GitHub Issues](https://github.com/jacky9813/pso2Tools/issues)
