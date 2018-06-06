@@ -24,21 +24,21 @@ class TaCounter extends pso2tools_module{
     }
     setTATTime(cid, time = null){
         if(time == null){
-            time = Date.now();
+            time = Date.now() / 1000;
         }
         this.db.run("UPDATE characters SET lastTATime=? WHERE cid=?",[time, cid]);
         this.app.render();
     }
     renderToolBlock(cid){
         var lastTaTime = this.getTATime(cid);
-        var cdComplete = Date.now() > (lastTaTime+ (1000*3600*166))
-        return (<div>{"Previous TA Time: "+(new Date(lastTaTime)).toLocaleString()}<br/>
-        <span style={{color: cdComplete?"green":"red"}}>{"Cool Down Complete time: "+(new Date(lastTaTime+ (1000*3600*166))).toLocaleString()}</span><br />
+        var cdComplete = Date.now() > (lastTaTime+ (3600*166))*1000
+        return (<div>{"Previous TA Time: "+(new Date(lastTaTime*1000)).toLocaleString()}<br/>
+        <span style={{color: cdComplete?"green":"red"}}>{"Cool Down Complete time: "+(new Date(lastTaTime*1000+ (1000*3600*166))).toLocaleString()}</span><br />
         <TaCounterSetTime cid={cid} time={"now"} label={"Just done TA"} click={(time)=>{this.setTATTime(cid,time)}}/>
         </div>);
     }
 
     renderCharTable(cid){
-        return <td key={"tbltaCounter"+cid.toString()}>{(Date.now() > (this.getTATime(cid)+1000*3600*166))?(<span style={{color:"green"}}>{"TA mission available"}</span>):(<span style={{color:"red"}}>{"TA mission unavailable"}</span>)}</td>;
+        return <td key={"tbltaCounter"+cid.toString()}>{(Date.now() > (this.getTATime(cid)*1000+1000*3600*166))?(<span style={{color:"green"}}>{"TA mission available"}</span>):(<span style={{color:"red"}}>{"TA mission unavailable"}</span>)}</td>;
     }
 }
