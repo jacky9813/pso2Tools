@@ -1,3 +1,9 @@
+# [0.1.0-beta]
+(2018-06-06)
+### New feature
+- Introduced React.js to this application
+- Rewrite whole system, making it more modulized
+
 # [0.0.3-alpha]
 (2017-09-20)
 ### New feature

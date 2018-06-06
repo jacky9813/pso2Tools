@@ -1,23 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>PSO2 Tools</title>
-        <link rel="stylesheet" href="styles/main.css" />
-        <!-- Node Modules -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js" onload="window.$ = window.jQuery = module.exports;"></script>
-        <script src="scripts/nodeModuleLoader.js"></script>
-
-        <!-- User Modules -->
-        <script src="scripts/dbUpgrade.js"></script>
-        <script src="scripts/pso2Characters.js"></script>
-        <script src="scripts/functions.js"></script>
-        <script src="scripts/modules/exTower.js"></script>
-    </head>
-    <body>
-        <button onclick="refreshPage();">もう一度読む</button><br><br>
-        <div class="tab"></div>
-        <div class="tabcontainers"></div>
-        <div class="footer"></div>
-        <script src="scripts/index.js"></script>
-    </body>
+<head>
+    <title>PSO2 Utility</title>
+    <meta charset="utf-8" />
+    <script>
+        const React = require("react");
+        const ReactDOM = require("react-dom");
+        const path = require("path");
+        require('electron-react-devtools').install()
+    </script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script type="text/babel" src="pso2tools.js"></script>
+    <script type="text/babel" src="pso2tools_module.js"></script>
+    <script type="text/babel" src="modules/TaCounter.babel.js"></script>
+    <script type="text/babel" src="modules/Memo.babel.js"></script>
+    <script type="text/babel" src="modules/ClassLevel.babel.js"></script>
+    <script type="text/babel" src="modules/DeleteCharacter.babel.js"></script>
+    <link rel="stylesheet" href="mainStyle.css" />
+</head>
+<body>
+    <div class="tab" id="tabButtons"></div>
+    <div class="tabContainers" id="tabContainers"></div>
+    <script type="text/babel">
+        var app = new pso2tools("pso2db.db");
+        app.loadModule(TaCounter);
+        app.loadModule(Memo);
+        app.loadModule(ClassLevel);
+        app.loadModule(DeleteCharacter);
+        app.render();
+    </script>
+</body>
 </html>

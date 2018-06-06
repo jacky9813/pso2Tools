@@ -1,26 +1,24 @@
 {
   "name": "pso2tools",
-  "version": "0.0.3-alpha",
-  "description": "PSO2 useful tools",
+  "version": "0.1.0-beta",
+  "description": "PSO2 Utility",
   "main": "index.js",
   "scripts": {
     "start": "electron .",
-    "postinstall": ".\\node_modules\\.bin\\electron-rebuild",
-    "build-windows": "electron-packager . --overwrite --asar=true --platform=win32 --arch=x64 --icon=images/appicon/win/appicon.ico --out=release-builds "
+    "postinstall": "electron-rebuild"
   },
   "author": "JackyCCC",
   "license": "Unlicense",
   "dependencies": {
-    "electron": "^1.7.5",
-    "semver": "^5.4.1",
-    "electron-rebuild": "^1.6.0",
-    "sqlite3": "^3.1.9"
+    "electron": "^2.0.2",
+    "electron-react-devtools": "^0.5.3",
+    "electron-rebuild": "^1.7.3",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "sqlite-sync": "^0.3.8"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/jacky9813/pso2Tools.git"
   },
-  "devDependencies": {
-    "electron-packager": "^9.0.0"
-  }
 }

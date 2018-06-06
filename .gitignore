@@ -1,2 +1,4 @@
+.gitignore
 node_modules
-release-builds
+pso2db.db
+package-lock.json
