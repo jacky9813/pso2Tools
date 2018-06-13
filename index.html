@@ -44,7 +44,7 @@
     <div class="tab" id="tabButtons"></div>
     <div class="tabContainers" id="tabContainers"></div>
     <script type="text/babel">
-        var app = new pso2tools("pso2db.db");
+        var app = new pso2tools(path.join(process.cwd(),"pso2db.db"));
         app.loadModule(TaCounter);
         app.loadModule(Memo);
         app.loadModule(ClassLevel);
