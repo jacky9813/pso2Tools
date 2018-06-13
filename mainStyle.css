@@ -25,6 +25,9 @@ td{
 .windowTitle{
     display: grid;
     grid-template-columns: 1fr 100px;
+    position: sticky;
+    top: 0;
+    background: #fff;
 }
 
 .windowTitle .title{
