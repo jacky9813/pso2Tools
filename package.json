@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "postinstall": "electron-rebuild",
-    "build-windows": "electron-packager . --overwrite --asar=true --platform=win32 --arch=x64 --out=release-builds ",
+    "build-windows": "electron-packager . --overwrite --asar --platform=win32 --arch=x64 --out=release-builds ",
     "dbUpgrade": "node upgradeDatabase.js"
   },
   "author": "JackyCCC",
