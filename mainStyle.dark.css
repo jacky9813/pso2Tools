@@ -7,14 +7,33 @@ body{
 html{
     padding: 0;
     margin: 0;
+    background: #333;
+    color: #fff;
 }
 
 table{
     border-spacing: 0;
 }
 
+input, textarea, button {
+    background: #333;
+    border: white 1px solid;
+    border-radius: 3px;
+    padding: 3px;
+    color: white;
+    max-width: 100%;
+}
+
+button:hover{
+    background: #666;
+}
+
+button:active{
+    background: #444;
+}
+
 tr:hover{
-    background: #CCC;
+    background: #555;
 }
 
 td{
@@ -44,7 +63,7 @@ td{
 }
 
 .windowTitle .button button:hover{
-    background: #CCC;
+    background: #666;
 }
 
 .windowTitle .button button:active{
@@ -56,13 +75,13 @@ td{
 }
 
 .windowTitle .button svg{
-    fill: black;
+    fill: white;
 }
 
 div.tab {
     overflow: hidden;
     border: 1px solid #CCC;
-    background: #f1f1f1;
+    background: #444;
 }
 /* Style the buttons inside the tab */
 div.tab button {
@@ -72,25 +91,24 @@ div.tab button {
     outline: none;
     cursor: pointer;
     padding: 14px 16px;
+    color: white;
     transition: 0.3s;
 }
 
 /* Change background color of buttons on hover */
 div.tab button:hover {
-    background-color: #ddd;
+    background-color: #666;
 }
 
 /* Create an active/current tablink class */
 div.tab button[active] {
-    background-color: #ccc;
+    background-color: #333;
 }
 
 /* Style the tab content */
 .tabcontent {
     display: none;
     padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
 }
 
 .gridwrapper {

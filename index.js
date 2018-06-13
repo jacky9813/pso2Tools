@@ -18,16 +18,16 @@ function CreateWindow(){
     mainWindow = new BrowserWindow({
         width: 1024,
         height: 600,
-        frame: true,
+        frame: false,
         webPreferences: {
             //experimentalFeatures: true
         }
     });
 
     // To open DevTools, uncomment the line below
-    //mainWindow.webContents.openDevTools();
+    mainWindow.webContents.openDevTools();
 
-    //mainWindow.setMenu(null);
+    mainWindow.setMenu(null);
 
     mainWindow.loadURL(url.format({
         pathname: path.join(__dirname, "index.html"),
