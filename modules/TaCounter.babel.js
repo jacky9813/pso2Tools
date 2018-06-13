@@ -44,7 +44,7 @@ class TaCounter extends pso2tools_module{
         var lastTaTime = this.getTATime(cid);
         var cdComplete = Date.now() > (lastTaTime+ (3600*166))*1000
         return (<div>{"Previous TA Time: "+(new Date(lastTaTime*1000)).toLocaleString()}<br/>
-        <span style={{background: (cdComplete?"none":"red"), color: (cdComplete?"green":"none")}}>{"Cool Down Complete time: "+(new Date(lastTaTime*1000+ (1000*3600*166))).toLocaleString()}</span><br />
+        <span style={{background: (cdComplete?"inherit":"red"), color: (cdComplete?"green":"inherit")}}>{"Cool Down Complete time: "+(new Date(lastTaTime*1000+ (1000*3600*166))).toLocaleString()}</span><br />
         <TaCounterSetTime cid={cid} type={"Now"} label={"Just done TA"} click={()=>{this.setTATime(cid,null)}}/><br/>
         <TaCounterDateSelector cid={cid} /><br/>
         <TaCounterSetTime cid={cid} type={"CDComplete"} label={"CD done at"} click={()=>{this.setTATime(cid,(new Date(document.querySelector("#TaCounterDateSel"+cid.toString()).value)).getTime()/1000-(3600*166))}} />
