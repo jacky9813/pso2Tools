@@ -18,6 +18,8 @@ function CreateWindow(){
     mainWindow = new BrowserWindow({
         width: 1024,
         height: 600,
+        minHeight: 400,
+        minWidth: 500,
         frame: false,
         webPreferences: {
             //experimentalFeatures: true
