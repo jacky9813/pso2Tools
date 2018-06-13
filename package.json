@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "postinstall": "electron-rebuild",
-    "build-windows": "electron-packager . --overwrite --asar=true --platform=win32 --arch=x64 --icon=images/appicon/win/appicon.ico --out=release-builds ",
+    "build-windows": "electron-packager . --overwrite --asar=true --platform=win32 --arch=x64 --out=release-builds ",
     "dbUpgrade": "node upgradeDatabase.js"
   },
   "author": "JackyCCC",
@@ -22,5 +22,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/jacky9813/pso2Tools.git"
+  },
+  "devDependencies": {
+    "electron-packager": "^12.1.0"
   }
 }
