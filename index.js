@@ -54,7 +54,6 @@ if(!path.isAbsolute(newFile)){
 
 if(fs.existsSync(oldFile)){
     fs.rename(oldFile, newFile, ()=>{upgradeDatabase(newFile);})
-}else{
     upgradeDatabase(newFile);
 }
 
