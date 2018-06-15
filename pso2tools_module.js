@@ -18,4 +18,8 @@ class pso2tools_module{
     renderCharTable(cid){
         return null;
     }
+
+    renderTab(){
+        return null;
+    }
 }
