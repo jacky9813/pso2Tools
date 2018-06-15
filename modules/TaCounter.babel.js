@@ -24,6 +24,14 @@ class TaCounter extends pso2tools_module{
     constructor(app){
         super(app);
         this.db = app.db;
+        this.langList = {
+            "PrevTATime": "Previous TA mission complete time:",
+            "CDCompleteTime": "TA Mission Cooldown to:",
+            "JustDone": "Just Done",
+            "CDDoneAt": "CD done at",
+            "TAMissionAvailable": "TA mission available",
+            "CDUntil": "TA mission Cooldown to "
+        }
     }
 
     dbInitialize(){
@@ -43,15 +51,16 @@ class TaCounter extends pso2tools_module{
     renderToolBlock(cid){
         var lastTaTime = this.getTATime(cid);
         var cdComplete = Date.now() > (lastTaTime+ (3600*166))*1000
-        return (<div>{"Previous TA Time: "+(new Date(lastTaTime*1000)).toLocaleString()}<br/>
-        <span style={{background: (cdComplete?"inherit":"red"), color: (cdComplete?"green":"inherit")}}>{"Cool Down Complete time: "+(new Date(lastTaTime*1000+ (1000*3600*166))).toLocaleString()}</span><br />
-        <TaCounterSetTime cid={cid} type={"Now"} label={"Just done TA"} click={()=>{this.setTATime(cid,null)}}/><br/>
+        return (<div>{this.langList.PrevTATime+(new Date(lastTaTime*1000)).toLocaleString()}<br/>
+        <span style={{background: (cdComplete?"unset":"red"), color: (cdComplete?"green":"unset")}}>{this.langList.CDCompleteTime+(new Date(lastTaTime*1000+ (1000*3600*166))).toLocaleString()}</span><br />
+        <TaCounterSetTime cid={cid} type={"Now"} label={this.langList.JustDone} click={()=>{this.setTATime(cid,null)}}/><br/>
         <TaCounterDateSelector cid={cid} /><br/>
-        <TaCounterSetTime cid={cid} type={"CDComplete"} label={"CD done at"} click={()=>{this.setTATime(cid,(new Date(document.querySelector("#TaCounterDateSel"+cid.toString()).value)).getTime()/1000-(3600*166))}} />
+        <TaCounterSetTime cid={cid} type={"CDComplete"} label={this.langList.CDDoneAt} click={()=>{this.setTATime(cid,(new Date(document.querySelector("#TaCounterDateSel"+cid.toString()).value)).getTime()/1000-(3600*166))}} />
         </div>);
     }
 
     renderCharTable(cid){
-        return <td key={"tbltaCounter"+cid.toString()}>{(Date.now() > (this.getTATime(cid)*1000+1000*3600*166))?(<span style={{color:"green"}}>{"TA mission available"}</span>):(<span style={{background:"red"}}>{"TA mission unavailable"}</span>)}</td>;
+        var TACDtime = this.getTATime(cid)*1000+1000*3600*166;  // Chrome timestamp
+        return <td key={"tbltaCounter"+cid.toString()}>{(Date.now() > TACDtime?(<span style={{color:"green"}}>{this.langList.TAMissionAvailable}</span>):(<span style={{background:"red"}}>{this.langList.CDUntil+((new Date(TACDtime)).toLocaleString())}</span>))}</td>;
     }
 }
