@@ -2,11 +2,16 @@ body{
     font-family: sans-serif;
     padding: 0;
     margin: 0;
+    overflow: hidden;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: min-content auto;
 }
 
 html{
     padding: 0;
     margin: 0;
+    transition: 0.3s;
 }
 
 table{
@@ -24,10 +29,7 @@ td{
 
 .windowTitle{
     display: grid;
-    grid-template-columns: 1fr 100px;
-    position: sticky;
-    top: 0;
-    background: #fff;
+    grid-template-columns: auto max-content;
 }
 
 .windowTitle .title{
@@ -40,14 +42,19 @@ td{
 }
 
 .windowTitle .button button{
-    padding: 0 5px;
+    padding: 0 15px;
     border: none;
     background: none;
     height: 100%;
+    transition: 0.3s;
 }
 
 .windowTitle .button button:hover{
     background: #CCC;
+}
+
+.windowTitle .button button.close:hover{
+    background: #D20;
 }
 
 .windowTitle .button button:active{
@@ -58,8 +65,16 @@ td{
     outline: none;
 }
 
+.windowTitle .button button.close:hover svg{
+    fill: white;
+}
+
 .windowTitle .button svg{
     fill: black;
+}
+
+.windowContent{
+    overflow: auto;
 }
 
 div.tab {
