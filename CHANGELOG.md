@@ -1,3 +1,22 @@
+# [0.1.3-beta]
+(pending)
+## New feature
+- Switch day / night style by clicking light bulb
+
+## Improved / Fixed
+- Scroll bar will never appear beside title bar anymore
+- TACounter module: fixed styling error when user set TA mission from available to unavailable 
+
+# [0.1.2-beta]
+(2018-06-13)
+## Fixed Issues
+- TA time loss when database upgrading (which didn't fix in 0.1.1-beta)
+
+# [0.1.1-beta]
+(2018-06-13)
+## Fixed Issues
+- Database upgrade rerun after upgraded, which will cause TA time loss
+
 # [0.1.0-beta]
 (2018-06-06)
 ### New feature
