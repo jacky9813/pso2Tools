@@ -12,14 +12,6 @@
         const electron = require("electron");
         require('electron-react-devtools').install()
     </script>
-    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
-    <script type="text/babel" src="pso2tools.js"></script>
-    <script type="text/babel" src="pso2tools_module.js"></script>
-    <script type="text/babel" src="modules/TaCounter.babel.js"></script>
-    <script type="text/babel" src="modules/Memo.babel.js"></script>
-    <script type="text/babel" src="modules/ClassLevel.babel.js"></script>
-    <script type="text/babel" src="modules/DeleteCharacter.babel.js"></script>
-    <script type="text/babel" src="modules/ChatLog.babel.js"></script>
 </head>
 <body>
     <div class="windowTitle">
@@ -50,18 +42,26 @@
     <div class="windowContent">
         <div class="tab" id="tabButtons"></div>
         <div class="tabContainers" id="tabContainers">Loading...</div>
-        <script type="text/babel">
-            var app = new pso2tools(path.join(process.cwd(),"pso2db.db"));
-            app.loadModule(TaCounter);
-            app.loadModule(Memo);
-            app.loadModule(ClassLevel);
-            app.loadModule(DeleteCharacter);
-            app.loadModule(ChatLog);
-            app.render();
-            setInterval(()=>{
-                app.render();
-            }, 10000);
-        </script>
     </div>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script type="text/babel" src="pso2tools.js"></script>
+    <script type="text/babel" src="pso2tools_module.js"></script>
+    <script type="text/babel" src="modules/TaCounter.babel.js"></script>
+    <script type="text/babel" src="modules/Memo.babel.js"></script>
+    <script type="text/babel" src="modules/ClassLevel.babel.js"></script>
+    <script type="text/babel" src="modules/DeleteCharacter.babel.js"></script>
+    <script type="text/babel" src="modules/ChatLog.babel.js"></script>
+    <script type="text/babel">
+        var app = new pso2tools(path.join(process.cwd(),"pso2db.db"));
+        app.loadModule(TaCounter);
+        app.loadModule(Memo);
+        app.loadModule(ClassLevel);
+        app.loadModule(DeleteCharacter);
+        app.loadModule(ChatLog);
+        app.render();
+        setInterval(()=>{
+            app.render();
+        }, 10000);
+    </script>
 </body>
 </html>
