@@ -1,5 +1,16 @@
-# [0.1.3-beta]
+# [0.1.4-beta]
 (pending)
+## New feature
+- Modules now can add a tab for it's own purpose (whether it's for module settings or to show other things)
+
+## New module
+- ChatLog Module: reads your PSO2 Chat log and display it like in game, sort of
+
+# Improved / Fixed
+- Stylesheet and window buttons won't load until all bebel script has been compiled and loaded
+
+# [0.1.3-beta]
+(2018-06-15)
 ## New feature
 - Switch day / night style by clicking light bulb
 
