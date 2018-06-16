@@ -20,7 +20,16 @@ $npm run dbUpgrade
 - TaCounter module - Set TA mission complete time, calculate the time TA missions will be available again
 
 ## How to backup the data
-The /Path/to/App/pso2db.db is what you looking for
+The /Path/to/App/pso2db.db and /Path/to/App/settings.json (if exists) is what you looking for
+
+## About settings.json
+It's a way to enhance your experience of using PSO2 Utility. Just fill all what you know like:
+```JSON
+{
+    "myID": 'Your player ID in PSO2, like: "myID":123456789',
+    "pso2DocumentLocation": 'The directory storing the user data and logs, typically in Document\\SEGA\\PHANTASYSTARONLINE2. PSO2 Utility will find this directory automatically, input this field if this failed'
+}
+```
 
 ## Contribute
 - Point out a bug, idea of new feature on [GitHub Issues](https://github.com/jacky9813/pso2Tools/issues)
