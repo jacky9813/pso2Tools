@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>PSO2 Utility 0.1.3-beta</title>
+    <title>PSO2 Utility 0.1.4-dev</title>
     <meta charset="utf-8" />
+    <link id="styleLink" rel="stylesheet" href="mainStyle.dark.css" />
     <script>
+        const fs = require("fs");
         const React = require("react");
         const ReactDOM = require("react-dom");
         const path = require("path");
@@ -17,11 +19,11 @@
     <script type="text/babel" src="modules/Memo.babel.js"></script>
     <script type="text/babel" src="modules/ClassLevel.babel.js"></script>
     <script type="text/babel" src="modules/DeleteCharacter.babel.js"></script>
-    <link id="styleLink" rel="stylesheet" href="mainStyle.dark.css" />
+    <script type="text/babel" src="modules/ChatLog.babel.js"></script>
 </head>
 <body>
     <div class="windowTitle">
-        <span class="title">PSO2 Utility 0.1.3-beta</span>
+        <span class="title">PSO2 Utility 0.1.4-dev</span>
         <span class="button">
             <button onclick="if(document.getElementById('styleLink').href.match(/\.dark\./) != null){document.getElementById('styleLink').href = 'mainStyle.css'}else{document.getElementById('styleLink').href = 'mainStyle.dark.css'}">
                 <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg">
@@ -46,17 +48,16 @@
         </span>
     </div>
     <div class="windowContent">
-        <div id="loading">Loading...</div>
         <div class="tab" id="tabButtons"></div>
-        <div class="tabContainers" id="tabContainers"></div>
+        <div class="tabContainers" id="tabContainers">Loading...</div>
         <script type="text/babel">
             var app = new pso2tools(path.join(process.cwd(),"pso2db.db"));
             app.loadModule(TaCounter);
             app.loadModule(Memo);
             app.loadModule(ClassLevel);
             app.loadModule(DeleteCharacter);
+            app.loadModule(ChatLog);
             app.render();
-            document.getElementById("loading").remove();
             setInterval(()=>{
                 app.render();
             }, 10000);
