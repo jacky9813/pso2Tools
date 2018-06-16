@@ -5,3 +5,4 @@ pso2db.db
 package-lock.json
 run.cmd
 release-builds
+settings.json
