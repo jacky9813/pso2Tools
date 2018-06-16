@@ -74,7 +74,10 @@ td{
 }
 
 .windowContent{
-    overflow: auto;
+    /* overflow: auto; */
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: min-content auto;
 }
 
 div.tab {
@@ -85,7 +88,6 @@ div.tab {
 /* Style the buttons inside the tab */
 div.tab button {
     background-color: inherit;
-    float: left;
     border: none;
     outline: none;
     cursor: pointer;
@@ -107,8 +109,16 @@ div.tab button[active] {
 .tabcontent {
     display: none;
     padding: 6px 12px;
-    border: 1px solid #ccc;
-    border-top: none;
+    height: calc(100% - 12px);
+}
+
+.tabContainers{
+    overflow: auto;
+}
+
+.tabContainers > div{
+    width: 100%;
+    height: 100%;
 }
 
 .gridwrapper {
