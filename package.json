@@ -1,6 +1,6 @@
 {
   "name": "pso2tools",
-  "version": "0.1.3-beta",
+  "version": "0.1.4-beta",
   "description": "PSO2 Utility",
   "main": "index.js",
   "keywords": [
