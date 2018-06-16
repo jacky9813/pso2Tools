@@ -26,8 +26,8 @@ The /Path/to/App/pso2db.db and /Path/to/App/settings.json (if exists) is what yo
 It's a way to enhance your experience of using PSO2 Utility. Just fill all what you know like:
 ```JSON
 {
-    "myID": 'Your player ID in PSO2, like: "myID":123456789',
-    "pso2DocumentLocation": 'The directory storing the user data and logs, typically in Document\\SEGA\\PHANTASYSTARONLINE2. PSO2 Utility will find this directory automatically, input this field if this failed'
+    "myID": "Your player ID in PSO2, like: \"myID\":123456789",
+    "pso2DocumentLocation": "The directory storing the user data and logs, typically in Document\\SEGA\\PHANTASYSTARONLINE2. PSO2 Utility will find this directory automatically, input this field if this failed"
 }
 ```
 
