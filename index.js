@@ -65,7 +65,7 @@ function CreateWindow(){
         minHeight: 400,
         minWidth: 500,
         frame: false,
-        transparent: true,
+        //transparent: true,
         webPreferences: {
             //experimentalFeatures: true
         }
