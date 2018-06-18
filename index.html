@@ -10,6 +10,8 @@
         const ReactDOM = require("react-dom");
         const path = require("path");
         const electron = require("electron");
+        const url = require("url");
+        const opn = require("opn");
         require('electron-react-devtools').install()
     </script>
 </head>
@@ -51,6 +53,7 @@
     <script type="text/babel" src="modules/ClassLevel.babel.js"></script>
     <script type="text/babel" src="modules/DeleteCharacter.babel.js"></script>
     <script type="text/babel" src="modules/ChatLog.babel.js"></script>
+    <script type="text/babel" src="modules/Links.babel.js"></script>
     <script type="text/babel">
         var app = new pso2tools(path.join(process.cwd(),"pso2db.db"));
         app.loadModule(TaCounter);
@@ -58,6 +61,7 @@
         app.loadModule(ClassLevel);
         app.loadModule(DeleteCharacter);
         app.loadModule(ChatLog);
+        app.loadModule(Links);
         app.render();
         setInterval(()=>{
             app.render();
