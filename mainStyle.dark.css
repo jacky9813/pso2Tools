@@ -37,6 +37,12 @@ button:active{
     background: #444;
 }
 
+button[disabled] {
+    background: #666;
+    color: #999;
+    border-color: #999;
+}
+
 tr:hover{
     background: #555;
 }
