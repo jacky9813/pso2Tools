@@ -71,8 +71,10 @@ function CreateWindow(){
         }
     });
 
-    // To open DevTools, uncomment the line below
-    //mainWindow.webContents.openDevTools();
+    // To open DevTools, start with npm start --dev or pso2Tools.exe --dev
+    if(process.env["npm_config_dev"] == "true" || typeof(process.argv.find(function(el){return el=="--dev"})) !== "undefined"){
+        mainWindow.webContents.openDevTools();
+    }
 
     mainWindow.setMenu(null);
 
