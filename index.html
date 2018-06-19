@@ -54,8 +54,10 @@
     <script type="text/babel" src="modules/DeleteCharacter.babel.js"></script>
     <script type="text/babel" src="modules/ChatLog.babel.js"></script>
     <script type="text/babel" src="modules/Links.babel.js"></script>
+    <script type="text/babel" src="modules/Settings.babel.js"></script>
     <script type="text/babel">
         var app = new pso2tools(path.join(process.cwd(),"pso2db.db"));
+        app.loadModule(Settings);
         app.loadModule(TaCounter);
         app.loadModule(Memo);
         app.loadModule(ClassLevel);
