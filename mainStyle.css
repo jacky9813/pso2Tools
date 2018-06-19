@@ -14,6 +14,29 @@ html{
     transition: 0.3s;
 }
 
+input, textarea, button {
+    background: white;
+    border: #888 1px solid;
+    border-radius: 3px;
+    padding: 3px;
+    color: black;
+    max-width: 100%;
+}
+
+button:hover{
+    background: #CCC;
+}
+
+button:active{
+    background: #444;
+}
+
+button[disabled] {
+    background: #666;
+    color: #999;
+    border-color: #999;
+}
+
 table{
     border-spacing: 0;
 }
