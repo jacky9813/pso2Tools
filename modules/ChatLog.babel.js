@@ -31,18 +31,6 @@ class ChatLog extends pso2tools_module{
         super(app);
     }
 
-    dbInitialize(){
-
-    }
-
-    renderToolBlock(cid){
-        return null;
-    }
-
-    renderCharTable(cid){
-        return null;
-    }
-
     readChatLog(dirpath){
         var file = path.join(dirpath,document.getElementById("ChatLog_fileSelect").value);
         if(fs.existsSync(file)){
