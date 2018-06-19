@@ -5,7 +5,7 @@ class ChatLog_message extends React.Component{
 
     render(){
         var textColor = {
-            "PUBLIC":"white",
+            "PUBLIC":"#EEE",
             "PARTY": "#00BFFF",
             "GUILD": "#FFA500",
             "REPLY": "#FF1493"
