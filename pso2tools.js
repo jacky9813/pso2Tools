@@ -38,7 +38,7 @@ class pso2tools{
         }
         this.loadedModules = {};
         this.settings = {
-            "pso2DocumentLocation": path.join(process.env.HOME, "Documents\\SEGA\\PHANTASYSTARONLINE2")
+            "pso2DocumentLocation": path.join(process.env.USERPROFILE, "Documents\\SEGA\\PHANTASYSTARONLINE2")
         }
         var settingsFile = path.join(process.cwd(),"settings.json");
         if(fs.existsSync(settingsFile)){
