@@ -1,14 +1,8 @@
 # PSO2 Utility (formerly know as PSO2 Tools)
 
-## Attention
-This version of PSO2 Utility's database is not compatible with previous version's file.
+Some useful utilities for PSO2
 
-Users has to upgrade the old database file by following:
-
-(make sure old database pso2Tools.db is in the same directory as package.json)
-```bash
-$npm run dbUpgrade
-```
+Don't worry, this won't affect PSO2 itself. This is just a total seprate program.
 
 ## Features
 - Highly modulized feature
@@ -18,6 +12,9 @@ $npm run dbUpgrade
 - DeleteCharacter module - add a delete button to Character overview page
 - Memo module - add a memo for each character
 - TaCounter module - Set TA mission complete time, calculate the time TA missions will be available again
+- ChatLog module - Display in-game chat log from PSO2 log file
+- Links module - A storage of links that often used while playing PSO2
+- Settings module - To change some user settings for PSO2 Utility
 
 ## How to backup the data
 The /Path/to/App/pso2db.db and /Path/to/App/settings.json (if exists) is what you looking for
@@ -30,6 +27,8 @@ It's a way to enhance your experience of using PSO2 Utility. Just fill all what 
     "pso2DocumentLocation": "The directory storing the user data and logs, typically in Document\\SEGA\\PHANTASYSTARONLINE2. PSO2 Utility will find this directory automatically, input this field if this failed"
 }
 ```
+
+Or, you can use Settings panel in PSO2 Utility (>=0.1.4-beta)
 
 ## Contribute
 - Point out a bug, idea of new feature on [GitHub Issues](https://github.com/jacky9813/pso2Tools/issues)
