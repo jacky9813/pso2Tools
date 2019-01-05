@@ -35,7 +35,7 @@ class TaCounter extends pso2tools_module{
     }
 
     dbInitialize(){
-        this.db.run("ALTER TABLE `characters` ADD COLUMN `lastTATime` TIMESTAMP NULL");
+        this.app.db.run("ALTER TABLE `characters` ADD COLUMN `lastTATime` TIMESTAMP NULL");
     }
 
     getTATime(cid){
