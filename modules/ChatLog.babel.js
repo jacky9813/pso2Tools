@@ -16,8 +16,14 @@ class ChatLog_message extends React.Component{
             msgLines.splice(i*2-1,0,<br key={"ChatLog_msgLineBr_"+i.toString()}/>);
         }
         if(this.props.myID != this.props.playerID)
-            return <span className={"ChatLog_msg"} style={{color:textColor[this.props.channel]}}>{this.props.playerCharacter}<span className={"CharLog_msgDetail"}>{this.props.time+", "+this.props.playerID}</span><br/>{msgLines}</span>
-        return <span className={"ChatLog_msg"} style={{color:textColor[this.props.channel],textAlign:"right"}}><span className={"CharLog_msgDetail"}>{this.props.time+", "+this.props.playerID}</span>{this.props.playerCharacter}<br/>{msgLines}</span>
+            return <div className={"ChatLog_msg " + this.props.channel} style={{color:textColor[this.props.channel]}}>
+            <span>{this.props.playerCharacter}<span className={"CharLog_msgDetail"}>{this.props.time+", "+this.props.playerID}</span><br/>{msgLines}</span>
+            <hr />
+            </div>
+        return <div className={"ChatLog_msg " + this.props.channel} style={{color:textColor[this.props.channel],textAlign:"right"}}>
+        <span><span className={"CharLog_msgDetail"}>{this.props.time+", "+this.props.playerID}</span>{this.props.playerCharacter}<br/>{msgLines}</span>
+        <hr />
+        </div>
     }
 }
 
@@ -29,13 +35,14 @@ function ChatLog_message_create(props, myID=0){
 class ChatLog extends pso2tools_module{
     constructor(app){
         super(app);
+        document.ChatLogshowCh = "ALL";
     }
 
     readChatLog(dirpath){
         var file = path.join(dirpath,document.getElementById("ChatLog_fileSelect").value);
         if(fs.existsSync(file)){
             var rawData = fs.readFileSync(file,{encoding:'utf-16le'});
-            var domData = [<hr key={"ChatLog_msgSplitter_-1"}/>];
+            var domData = [];
             rawData.split(/([0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2})/guim).forEach((msg,i,ary)=>{
                 msg = msg.trim().split("\t")
                 if(msg.length < 5){
@@ -56,7 +63,6 @@ class ChatLog extends pso2tools_module{
                 }
                 msg.message = msg.message.replace(/\"\"/g,"\"");
                 domData.push(ChatLog_message_create(msg,this.app.settings.myID));
-                domData.push(<hr key={"ChatLog_msgSplitter_"+(typeof(msg.time)=="undefined"?"":msg.time)+"_"+msg.msgID}/>)
             })
             ReactDOM.unmountComponentAtNode(document.getElementById("ChatLog_Log"));
             ReactDOM.render(<div>{domData}</div>,document.getElementById("ChatLog_Log"));
@@ -68,6 +74,11 @@ class ChatLog extends pso2tools_module{
         ReactDOM.render(<div></div>,document.getElementById("ChatLog_Log"));
     }
 
+    changeCh(ch){
+        document.ChatLogshowCh = ch.target.value;
+        document.getElementById("ChatLog_Log").className = document.ChatLogshowCh;
+    }
+
     renderTab(){
         var logDir = path.join(app.settings.pso2DocumentLocation,"log");
         if(fs.existsSync(logDir)){
@@ -75,8 +86,9 @@ class ChatLog extends pso2tools_module{
             var fileList = files.map((filename)=>{return <option key={"ChatLogFile_"+filename}>{filename}</option>});
             var content = <div style={{"display":"grid","gridTemplateRows":"min-content auto",height:"100%","justifyContent":"center"}}>
             <div><select id={"ChatLog_fileSelect"}>{fileList}</select>{" "}<button onClick={(()=>{return ()=>{this.readChatLog(logDir)}})()}>Read</button>{" "}<button onClick={((me)=>{return ()=>{me.clearChatLog()}})(this)}>Clear</button></div>
-            <div id={"ChatLog_Log"} style={{"overflowY":"auto","marginTop":"15px", "maxWidth": "410px"}}></div>
-            <style>{".ChatLog_msg{font-weight:bold;text-shadow:1.3px 1.3px black;display:block;}.CharLog_msgDetail{color:#888;font-weight:normal;font-size:70%;margin-left:5px;text-shadow:none;}"}</style>
+            <div><select id={"ChatLog_Channel"} onChange={this.changeCh}>{["ALL","PUBLIC","PARTY","GUILD","REPLY"].map((ch)=>{return <option key={ch}>{ch}</option>})}</select></div>
+            <div className={document.ChatLogshowCh} id={"ChatLog_Log"} style={{"overflowY":"auto","marginTop":"15px", "maxWidth": "410px"}}></div>
+            <style>{".ChatLog_msg{font-weight:bold;text-shadow:1.3px 1.3px black;display:none;}.CharLog_msgDetail{color:#888;font-weight:normal;font-size:70%;margin-left:5px;text-shadow:none;}#ChatLog_Log.ALL .ChatLog_msg{display:block;}#ChatLog_Log.PUBLIC .ChatLog_msg.PUBLIC{display:block;}#ChatLog_Log.PARTY .ChatLog_msg.PARTY{display:block;}#ChatLog_Log.GUILD .ChatLog_msg.GUILD{display:block;}#ChatLog_Log.REPLY .ChatLog_msg.REPLY{display:block;}"}</style>
             </div>
             return {"content":content, "label":"Chat log"};
         }else{
