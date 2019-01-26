@@ -24,6 +24,14 @@ class Emergency extends pso2tools_module{
                     "tuesday",
                     "wednesday2"
                 ]
+                var dayTbl = {}
+                var crossMonth = false; // Point the 1st day of the month.
+                day.forEach(function(el,i){
+                    dayTbl[el] = parseInt(content.querySelector("th.day-"+el).innerText.match(/(\d*)/g)[2]);    // Hope they won't change this LOL
+                    if(!crossMonth)
+                        crossMonth = (dayTbl[el] < (dayTbl[day[i-1]]|0)?el:false);
+                });
+                
                 var today = weekday[(new Date).getDay()]
 
                 if(today == "wednesday"){
@@ -34,46 +42,27 @@ class Emergency extends pso2tools_module{
                     var name = i.querySelector("span").innerText;
                     var eday = i.parentNode.className.split("-")[1];
                     var time = i.parentNode.parentNode.className;
-                    if(day.indexOf(eday) < day.indexOf(today)){
-                        //Discard emergency quest that happens in the past
-                        return;
-                    }
                     time = Number(time.split(/[\D*]/).filter((el)=>el != "").join(""));
-                    if(day.indexOf(eday) == day.indexOf(today))
-                        if(parseInt((time/100)+(timeOffset/60)) < parseInt((new Date()).getHours())){
-                            return;
-                        }
+
                     var datetime = new Date();
-                    switch(eday){
-                        case "wednesday1":
-                            // Must be today
-                            break;
-                        case "wednesday2":
-                            // Find Next Wednesday
-                            while(datetime.getDay() != 3){
-                                datetime.setDate(datetime.getDate() + 1);
-                            }
-                            break;
-                        default:
-                            while(weekday[datetime.getDay()] != eday){
-                                datetime.setDate(datetime.getDate() + 1);
-                            }
+                    datetime.setDate(dayTbl[eday]);
+                    if(crossMonth && datetime.getDate()>15 && (day.indexOf(today) < day.indexOf(crossMonth))){
+                        datetime.setMonth(datetime.getMonth + 1);
                     }
                     datetime.setHours(parseInt(time/100));
                     datetime.setMinutes((time % 100) + timeOffset);
                     datetime.setSeconds(0);
                     datetime.setMilliseconds(0);
+
+                    if(datetime < (new Date()).setMinutes((new Date()).getMinutes()+30)){
+                        return;
+                    }
+                    
                     emerList.push({name:name,time:datetime});
                 })
 
                 emerList.sort(function(el1, el2){
-                    // Compare day
-                    if(day.indexOf(el1.day)==day.indexOf(el2.day)){
-                        // Same day, Compare time
-                        return el1.time - el2.time;
-                    }else{
-                        return day.indexOf(el1.day) - day.indexOf(el2.day);
-                    }
+                    return el1.time - el2.time;
                 });
 
                 //Rendering
@@ -85,6 +74,9 @@ class Emergency extends pso2tools_module{
                 ReactDOM.render(<table><tbody>{emerElem}</tbody></table>,document.getElementById("Emergency_TimeTable"));
             }
         });
+        req.addEventListener("error",function(){
+            alert("Connection to Internet required!");
+        })
         req.send();
     }
 

@@ -10,6 +10,7 @@ Don't worry, this won't affect PSO2 itself. This is just a total seprate program
 ## Modules within
 - ClassLevel module - to record your character's class status
 - DeleteCharacter module - add a delete button to Character overview page
+- Emergency module - Get infomations about the latest Emergency Quest Time Table
 - Memo module - add a memo for each character
 - TaCounter module - Set TA mission complete time, calculate the time TA missions will be available again
 - ChatLog module - Display in-game chat log from PSO2 log file
