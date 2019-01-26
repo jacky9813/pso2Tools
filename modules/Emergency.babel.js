@@ -9,6 +9,9 @@ class Emergency extends pso2tools_module{
         req.open("GET",sourceURI);
         req.addEventListener("readystatechange",function(e){
             if(e.target.readyState === 4){
+                if(e.target.status != 200){
+                    return;
+                }
                 var parser = new DOMParser();
                 var content = parser.parseFromString(e.target.responseText,"text/html");
                 var emerList = [];
