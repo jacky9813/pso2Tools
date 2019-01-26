@@ -12,7 +12,7 @@
   "scripts": {
     "start": "electron .",
     "postinstall": "electron-rebuild",
-    "build-windows": "electron-packager . --overwrite --asar --platform=win32 --arch=x64 --out=release-builds "
+    "build-windows": "electron-packager . --overwrite --asar --platform=win32 --arch=x64 --out=release-builds --ignore=node_modules/electron-*"
   },
   "author": "JackyCCC",
   "contributors": [],
@@ -21,9 +21,6 @@
   },
   "homepage": "https://github.com/jacky9813/pso2Tools#readme",
   "dependencies": {
-    "electron": "^2.0.2",
-    "electron-react-devtools": "^0.5.3",
-    "electron-rebuild": "^1.7.3",
     "opn": "^5.3.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
@@ -34,6 +31,9 @@
     "url": "https://github.com/jacky9813/pso2Tools.git"
   },
   "devDependencies": {
+    "electron": "^2.0.2",
+    "electron-react-devtools": "^0.5.3",
+    "electron-rebuild": "^1.7.3",
     "electron-packager": "^12.1.0"
   },
   "license": "Unlicense"

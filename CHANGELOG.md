@@ -1,3 +1,15 @@
+# [0.1.5-beta]
+(2019-01-26)
+## New module
+- Emergency Module: get emergency quest time table from PSO2.jp
+
+## New feature
+- Chat Log now has channel filter.
+- use "--dev" to open PSO2 Utility will open devTools.
+
+# Improved / Fixed
+- Fixed installation issue that may leads TACounter module to misbehave.
+
 # [0.1.4-beta]
 (2018-06-19)
 ## New feature
