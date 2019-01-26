@@ -7,7 +7,7 @@
 - Chat Log now has channel filter.
 - use "--dev" to open PSO2 Utility will open devTools.
 
-# Improved / Fixed
+## Improved / Fixed
 - Fixed installation issue that may leads TACounter module to misbehave.
 
 # [0.1.4-beta]
