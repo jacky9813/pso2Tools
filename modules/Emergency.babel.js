@@ -38,7 +38,7 @@ class Emergency extends pso2tools_module{
                 var today = weekday[(new Date).getDay()]
 
                 if(today == "wednesday"){
-                    today = today + (((new Date).getHour()+(timeOffset/60))>16?"2":"1");
+                    today = today + (((new Date()).getHours()+(timeOffset/60))>16?"2":"1");
                 }
 
                 content.querySelectorAll("div.event-emergency").forEach((i)=>{
