@@ -57,7 +57,7 @@ class Emergency extends pso2tools_module{
                     datetime.setSeconds(0);
                     datetime.setMilliseconds(0);
 
-                    if(datetime < (new Date()).setMinutes((new Date()).getMinutes()+30)){
+                    if(datetime < (new Date()).setMinutes((new Date()).getMinutes()-30)){
                         return;
                     }
                     
