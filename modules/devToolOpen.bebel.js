@@ -8,7 +8,7 @@ class devToolOpen extends pso2tools_module{
     }
 
     renderTab(){
-        var content = <button onClick={function(){require("electron").remote.getCurrentWindow().openDevTools()}}>open DevTool</button>;
+        var content = <div><button onClick={function(){require("electron").remote.getCurrentWindow().openDevTools()}}>open DevTool</button><br/><br/><button onClick={function(){location.reload();}}>{"location.reload()"}</button></div>;
         return {content:content ,label:"DevTools"};
     }
 }
