@@ -6,7 +6,8 @@
 ## New feature
 
 ## Improved / Fixed
-- Fixed: Emergency Module malfunctions if user uses it when it's Wednesday.
+- Fixed(Emergency Module): Malfunctions if user uses it when it's Wednesday.
+- Fixed(Emergency Module): Emergency Quest disappears 30 mins before starts.
 
 # [0.1.5-beta]
 (2019-01-26)
