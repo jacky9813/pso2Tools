@@ -12,7 +12,9 @@
         const electron = require("electron");
         const url = require("url");
         const opn = require("opn");
-        //require('electron-react-devtools').install()
+        if(navigator.userAgent.match(/pso2tools\/([0-9a-zA-Z.-]*)/)[1].match(/-dev$/)){
+            require('electron-react-devtools').install()
+        }
     </script>
 </head>
 <body>
@@ -56,6 +58,7 @@
     <script type="text/babel" src="modules/Links.babel.js"></script>
     <script type="text/babel" src="modules/Settings.babel.js"></script>
     <script type="text/babel" src="modules/Emergency.babel.js"></script>
+    <script type="text/babel" src="modules/devToolOpen.bebel.js"></script>
     <script type="text/babel">
         var app = new pso2tools(path.join(process.cwd(),"pso2db.db"));
         app.loadModule(Settings);
@@ -66,6 +69,10 @@
         app.loadModule(ChatLog);
         app.loadModule(Links);
         app.loadModule(Emergency);
+        if(app.getVersion().match(/-dev$/) != null){
+            app.loadModule(devToolOpen);
+        }
+        
         app.render();
         setInterval(()=>{
             app.render();
