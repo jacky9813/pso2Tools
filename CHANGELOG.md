@@ -1,3 +1,13 @@
+# [0.1.6-beta]
+(TBC)
+## New module
+- devToolOpen Module : Chrome DevTools opener (normally hidden)
+
+## New feature
+
+## Improved / Fixed
+- Fixed: Emergency Module malfunctions if user uses it when it's Wednesday.
+
 # [0.1.5-beta]
 (2019-01-26)
 ## New module

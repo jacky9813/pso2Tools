@@ -16,6 +16,7 @@ Don't worry, this won't affect PSO2 itself. This is just a total seprate program
 - ChatLog module - Display in-game chat log from PSO2 log file
 - Links module - A storage of links that often used while playing PSO2
 - Settings module - To change some user settings for PSO2 Utility
+- devToolOpen module - Chrome DevTools Opener (will show up on version x.y.z-dev only)
 
 ## How to backup the data
 The /Path/to/App/pso2db.db and /Path/to/App/settings.json (if exists) is what you looking for
@@ -29,7 +30,7 @@ It's a way to enhance your experience of using PSO2 Utility. Just fill all what 
 }
 ```
 
-Or, you can use Settings panel in PSO2 Utility (>=0.1.4-beta)
+Or, you can use Settings panel in PSO2 Utility (>=0.1.4-beta) to manage all of these settings.
 
 ## Contribute
 - Point out a bug, idea of new feature on [GitHub Issues](https://github.com/jacky9813/pso2Tools/issues)
