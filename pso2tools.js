@@ -140,4 +140,8 @@ class pso2tools{
         ReactDOM.render(<div>{tabPages}</div>, document.getElementById("tabContainers"));
         ReactDOM.render(<div>{tabButtons}</div>, document.getElementById("tabButtons"));
     }
+
+    getVersion(){
+        return navigator.userAgent.match(/pso2tools\/([0-9a-zA-Z.-]*)/)[1];
+    }
 }
