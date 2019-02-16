@@ -28,16 +28,16 @@ class ClassLevel extends pso2tools_module{
 
     getEmptyLevelList(){
         return {
-            "Hu":85,
-            "Fi":85,
-            "Ra":85,
-            "Gu":85,
-            "Fo":85,
-            "Te":85,
-            "Br":85,
-            "Bo":85,
-            "Su":85,
-            "Hr":80
+            "Hu":90,
+            "Fi":90,
+            "Ra":90,
+            "Gu":90,
+            "Fo":90,
+            "Te":90,
+            "Br":90,
+            "Bo":90,
+            "Su":90,
+            "Hr":90
         };
     }
 
