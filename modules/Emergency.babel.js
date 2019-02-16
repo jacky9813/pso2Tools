@@ -3,7 +3,7 @@ class Emergency extends pso2tools_module{
         super(app);
     }
 
-    static getEmergencyInfo(handler){
+    static getEmergencyInfo(){
         var sourceURI = "http://pso2.jp/players/boost/";
         var req = new XMLHttpRequest();
         req.open("GET",sourceURI);
