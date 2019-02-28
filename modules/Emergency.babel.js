@@ -49,8 +49,8 @@ class Emergency extends pso2tools_module{
 
                     var datetime = new Date();
                     datetime.setDate(dayTbl[eday]);
-                    if(crossMonth && datetime.getDate()>15 && (day.indexOf(today) < day.indexOf(crossMonth))){
-                        datetime.setMonth(datetime.getMonth + 1);
+                    if(crossMonth && datetime.getDate()<15 && (day.indexOf(eday) >= day.indexOf(crossMonth))){
+                        datetime.setMonth(datetime.getMonth() + 1);
                     }
                     datetime.setHours(parseInt(time/100));
                     datetime.setMinutes((time % 100) + timeOffset);
