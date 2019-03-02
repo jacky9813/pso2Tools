@@ -1,6 +1,6 @@
 {
   "name": "pso2tools",
-  "version": "0.1.6-dev",
+  "version": "0.1.6-beta",
   "description": "PSO2 Utility",
   "main": "index.js",
   "keywords": [
@@ -31,10 +31,10 @@
     "url": "https://github.com/jacky9813/pso2Tools.git"
   },
   "devDependencies": {
-    "electron": "^2.0.2",
+    "electron": "^4.0.6",
     "electron-react-devtools": "^0.5.3",
-    "electron-rebuild": "^1.7.3",
-    "electron-packager": "^12.1.0"
+    "electron-rebuild": "^1.8.4",
+    "electron-packager": "^13.1.0"
   },
   "license": "Unlicense"
 }
