@@ -1,14 +1,18 @@
 # [0.1.6-beta]
-(TBC)
+(2019-03-02)
 ## New module
-- devToolOpen Module : Chrome DevTools opener (normally hidden)
+- devToolOpen Module : Chrome DevTools opener (will show up when --dev is specified)
 
 ## New feature
+- Emergnecy module is now included Arks League, thus renaming its tab label to Event
 
 ## Fixed / Changed
+- Changed: Upgraded electron from 2.0.2 to 4.0.6
+- Chenged: Width of the window will always greater or equal to 900 pixels now.
+- Changed(ClassLevel Module): Change class level limit to current PSO2 limit
 - Fixed(Emergency Module): Malfunctions if user uses it when it's Wednesday.
 - Fixed(Emergency Module): Emergency Quest disappears 30 mins before starts.
-- Changed(ClassLevel Module): Change class level limit to current PSO2 limit
+- Fixed(Emergency Module): Emergency start time can be wrong at the starting of the month.
 
 # [0.1.5-beta]
 (2019-01-26)
