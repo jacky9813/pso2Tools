@@ -11,6 +11,13 @@ class pso2tools_module{
 
     }
 
+    createStyle(css){
+        var style = document.createElement("style")
+        style.type = "text/css"
+        style.appendChild(document.createTextNode(css));
+        document.head.appendChild(style);
+    }
+
     renderToolBlock(cid){
         return null;
     }

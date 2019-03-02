@@ -36,6 +36,16 @@ class ChatLog extends pso2tools_module{
     constructor(app){
         super(app);
         document.ChatLogshowCh = "ALL";
+        this.createStyle(`
+            .ChatLog_msg{font-weight:bold;text-shadow:1.3px 1.3px black;display:none;}
+            .CharLog_msgDetail{color:#888;font-weight:normal;font-size:70%;margin-left:5px;text-shadow:none;}
+            #ChatLog_Log.ALL .ChatLog_msg{display:block;}
+            #ChatLog_Log.PUBLIC .ChatLog_msg.PUBLIC{display:block;}
+            #ChatLog_Log.PARTY .ChatLog_msg.PARTY{display:block;}
+            #ChatLog_Log.GUILD .ChatLog_msg.GUILD{display:block;}
+            #ChatLog_Log.REPLY .ChatLog_msg.REPLY{display:block;}
+            #ChatLog_Log{overflow-y:auto; margin-top:15px;min-width: 410px;}
+            #ChatLog_Wrapper{display:grid;grid-template-rows:min-content auto;height:100%;justify-content:center;}`);
     }
 
     readChatLog(dirpath){
@@ -84,11 +94,10 @@ class ChatLog extends pso2tools_module{
         if(fs.existsSync(logDir)){
             var files = fs.readdirSync(path.join(app.settings.pso2DocumentLocation,"log")).filter((fn)=>{return fn.match(/^ChatLog[0-9]{8}_[0-9]{2}/g);}).reverse();
             var fileList = files.map((filename)=>{return <option key={"ChatLogFile_"+filename}>{filename}</option>});
-            var content = <div style={{"display":"grid","gridTemplateRows":"min-content auto",height:"100%","justifyContent":"center"}}>
-            <div><select id={"ChatLog_fileSelect"}>{fileList}</select>{" "}<button onClick={(()=>{return ()=>{this.readChatLog(logDir)}})()}>Read</button>{" "}<button onClick={((me)=>{return ()=>{me.clearChatLog()}})(this)}>Clear</button></div>
-            <div><select id={"ChatLog_Channel"} onChange={this.changeCh}>{["ALL","PUBLIC","PARTY","GUILD","REPLY"].map((ch)=>{return <option key={ch}>{ch}</option>})}</select></div>
-            <div className={document.ChatLogshowCh} id={"ChatLog_Log"} style={{"overflowY":"auto","marginTop":"15px", "maxWidth": "410px"}}></div>
-            <style>{".ChatLog_msg{font-weight:bold;text-shadow:1.3px 1.3px black;display:none;}.CharLog_msgDetail{color:#888;font-weight:normal;font-size:70%;margin-left:5px;text-shadow:none;}#ChatLog_Log.ALL .ChatLog_msg{display:block;}#ChatLog_Log.PUBLIC .ChatLog_msg.PUBLIC{display:block;}#ChatLog_Log.PARTY .ChatLog_msg.PARTY{display:block;}#ChatLog_Log.GUILD .ChatLog_msg.GUILD{display:block;}#ChatLog_Log.REPLY .ChatLog_msg.REPLY{display:block;}"}</style>
+            var content = <div id={"ChatLog_Wrapper"}>
+            <div><select id={"ChatLog_fileSelect"}>{fileList}</select>{" "}<button onClick={(()=>{return ()=>{this.readChatLog(logDir)}})()}>Read</button>{" "}<button onClick={((me)=>{return ()=>{me.clearChatLog()}})(this)}>Clear</button><br/>
+            <select id={"ChatLog_Channel"} onChange={this.changeCh}>{["ALL","PUBLIC","PARTY","GUILD","REPLY"].map((ch)=>{return <option key={ch}>{ch}</option>})}</select></div>
+            <div className={document.ChatLogshowCh} id={"ChatLog_Log"}></div>
             </div>
             return {"content":content, "label":"Chat log"};
         }else{

@@ -1,7 +1,7 @@
 class Emergency extends pso2tools_module{
     constructor(app){
         super(app);
-        var css = `
+        this.createStyle(`
         tr.event-emergency:hover {
             background: #800;
         }
@@ -13,11 +13,7 @@ class Emergency extends pso2tools_module{
         }
         tr.event-league {
             background: #960;
-        }`;
-        var style = document.createElement("style")
-        style.type = "text/css"
-        style.appendChild(document.createTextNode(css));
-        document.head.appendChild(style);
+        }`);
     }
 
     static getEmergencyInfo(){
