@@ -2,6 +2,9 @@ class Emergency extends pso2tools_module{
     constructor(app){
         super(app);
         this.createStyle(`
+        #Emergency_TimeTable{
+            color: white;
+        }
         tr.event-emergency:hover {
             background: #800;
         }
@@ -92,7 +95,7 @@ class Emergency extends pso2tools_module{
                     var happening = "";
                     if(timeNow.getTime() > el.start.getTime() && timeNow.getTime() < el.end.getTime())
                         happening = "blink"
-                    emerElem.push(<tr key={"Emergency_emer"+i.toString()} className={el.class + " " + happening}><td>{el.typeStr}</td><td>{el.content}</td><td>{el.start.toLocaleString()}</td><td>{"~"}</td><td>{el.end.toLocaleString()}</td></tr>);
+                    emerElem.push(<tr data-starttime={el.start.getTime()} data-endtime={el.end.getTime()} key={"Emergency_emer"+i.toString()} className={el.class + " " + happening}><td>{el.typeStr}</td><td>{el.content}</td><td>{el.start.toLocaleString()}</td><td>{"~"}</td><td>{el.end.toLocaleString()}</td></tr>);
                 })
                 ReactDOM.unmountComponentAtNode(document.getElementById("Emergency_TimeTable"));
                 ReactDOM.render(<table><tbody>{emerElem}</tbody></table>,document.getElementById("Emergency_TimeTable"));
@@ -109,6 +112,23 @@ class Emergency extends pso2tools_module{
         <div><button onClick={Emergency.getEmergencyInfo}>{"Get Event Time Table"}</button></div>
         <div id={"Emergency_TimeTable"}></div>
         </div>
+        window.setInterval(()=>{
+            document.getElementById("Emergency_TimeTable").querySelectorAll("tr").forEach((el)=>{
+                var startTime = new Date(parseInt(el.getAttribute("data-starttime")));
+                var endTime = new Date(parseInt(el.getAttribute("data-endtime")));
+                var timeNow = new Date();
+                if(timeNow.getTime() > endTime.getTime()){
+                    // Since I can't remove it entirely, I'll just let it hidden from user
+                    el.setAttribute("style","display:none;")
+                } else {
+                    if(timeNow.getTime() > startTime.getTime()){
+                        if(!el.className.match(/blink/)){
+                            el.className = el.className + " blink";
+                        }
+                    }
+                }
+            })
+        },10000);
         return {content:content,label:"Event"}
     }
 }
