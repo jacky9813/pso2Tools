@@ -13,7 +13,16 @@ class Emergency extends pso2tools_module{
         }
         tr.event-league {
             background: #960;
-        }`);
+        }
+        .blink{
+            animation: blinker 1s step-start infinite;
+        }
+        @keyframes blinker{
+            50%{
+                background: none;
+            }
+        }
+        `);
     }
 
     static getEmergencyInfo(){
@@ -80,7 +89,10 @@ class Emergency extends pso2tools_module{
                 //Rendering
                 var emerElem = []
                 emerList.forEach(function(el,i){
-                    emerElem.push(<tr key={"Emergency_emer"+i.toString()} className={el.class}><td>{el.typeStr}</td><td>{el.content}</td><td>{el.start.toLocaleString()}</td><td>{"~"}</td><td>{el.end.toLocaleString()}</td></tr>);
+                    var happening = "";
+                    if(timeNow.getTime() > el.start.getTime() && timeNow.getTime() < el.end.getTime())
+                        happening = "blink"
+                    emerElem.push(<tr key={"Emergency_emer"+i.toString()} className={el.class + " " + happening}><td>{el.typeStr}</td><td>{el.content}</td><td>{el.start.toLocaleString()}</td><td>{"~"}</td><td>{el.end.toLocaleString()}</td></tr>);
                 })
                 ReactDOM.unmountComponentAtNode(document.getElementById("Emergency_TimeTable"));
                 ReactDOM.render(<table><tbody>{emerElem}</tbody></table>,document.getElementById("Emergency_TimeTable"));
