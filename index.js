@@ -63,7 +63,7 @@ function CreateWindow(){
         width: 1024,
         height: 600,
         minHeight: 400,
-        minWidth: 500,
+        minWidth: 900,
         frame: false,
         //transparent: true,
         webPreferences: {
