@@ -2,20 +2,19 @@ class Emergency extends pso2tools_module{
     constructor(app){
         super(app);
         this.createStyle(`
-        #Emergency_TimeTable{
-            color: white;
-        }
         tr.event-emergency:hover {
             background: #800;
         }
         tr.event-emergency {
             background: #500;
+            color: white;
         }
         tr.event-league:hover {
             background: #c80;
         }
         tr.event-league {
             background: #960;
+            color: white;
         }
         .blink{
             animation: blinker 1s step-start infinite;
@@ -23,6 +22,7 @@ class Emergency extends pso2tools_module{
         @keyframes blinker{
             50%{
                 background: none;
+                color: inherit;
             }
         }
         `);
