@@ -54,7 +54,7 @@ $npm run build-windows # build code for windows is included in package.json, mod
 ```
 
 ## License
-No license! Enjoy yourself to use, distrubute, copy, merge and even modify!
+Unlicense! Enjoy yourself to use, distrubute, copy, merge and even modify!
 
 ## Special Thanks
 [Material Design Icons by Google](https://github.com/google/material-design-icons)
