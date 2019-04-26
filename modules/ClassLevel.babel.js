@@ -37,7 +37,8 @@ class ClassLevel extends pso2tools_module{
             "Br":90,
             "Bo":90,
             "Su":90,
-            "Hr":90
+            "Hr":90,
+            "Ph":90
         };
     }
 
