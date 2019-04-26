@@ -8,7 +8,8 @@ class ChatLog_message extends React.Component{
             "PUBLIC":"#EEE",
             "PARTY": "#00BFFF",
             "GUILD": "#FFA500",
-            "REPLY": "#FF1493"
+            "REPLY": "#FF1493",
+            "GROUP": "#33CC33"
         }
         var msgLines = this.props.message.split("\n")
         var max = msgLines.length;
@@ -44,6 +45,7 @@ class ChatLog extends pso2tools_module{
             #ChatLog_Log.PARTY .ChatLog_msg.PARTY{display:block;}
             #ChatLog_Log.GUILD .ChatLog_msg.GUILD{display:block;}
             #ChatLog_Log.REPLY .ChatLog_msg.REPLY{display:block;}
+            #ChatLog_Log.GROUP .ChatLog_msg.GROUP{display:block;}
             #ChatLog_Log{overflow-y:auto; margin-top:15px;min-width: 410px;}
             #ChatLog_Wrapper{display:grid;grid-template-rows:min-content auto;height:100%;justify-content:center;}`);
     }
@@ -96,7 +98,7 @@ class ChatLog extends pso2tools_module{
             var fileList = files.map((filename)=>{return <option key={"ChatLogFile_"+filename}>{filename}</option>});
             var content = <div id={"ChatLog_Wrapper"}>
             <div><select id={"ChatLog_fileSelect"}>{fileList}</select>{" "}<button onClick={(()=>{return ()=>{this.readChatLog(logDir)}})()}>Read</button>{" "}<button onClick={((me)=>{return ()=>{me.clearChatLog()}})(this)}>Clear</button><br/>
-            <select id={"ChatLog_Channel"} onChange={this.changeCh}>{["ALL","PUBLIC","PARTY","GUILD","REPLY"].map((ch)=>{return <option key={ch}>{ch}</option>})}</select></div>
+            <select id={"ChatLog_Channel"} onChange={this.changeCh}>{["ALL","PUBLIC","PARTY","GUILD","REPLY","GROUP"].map((ch)=>{return <option key={ch}>{ch}</option>})}</select></div>
             <div className={document.ChatLogshowCh} id={"ChatLog_Log"}></div>
             </div>
             return {"content":content, "label":"Chat log"};
