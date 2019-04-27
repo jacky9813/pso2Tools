@@ -16,6 +16,13 @@ class Emergency extends pso2tools_module{
             background: #960;
             color: white;
         }
+        tr.event-live {
+            background: #ce7592;
+            color: white;
+        }
+        tr.event-live:hover {
+            background: #d78ea6;
+        }
         .blink{
             animation: blinker 1s step-start infinite;
         }
@@ -43,7 +50,7 @@ class Emergency extends pso2tools_module{
                 var timeNow = new Date();
                 var timeOffset = -(timeNow.getTimezoneOffset() + 540);    // + n minutes from Tokyo Time to Local Time
 
-                content.querySelectorAll("div.event-emergency, div.event-league").forEach((i)=>{
+                content.querySelectorAll("div.event-emergency, div.event-league, div.event-live").forEach((i)=>{
                     var time, startT, endT, st_Mo, st_D, st_H, st_Mi,en_Mo, en_D, en_H, en_Mi;
                     [time, startT, endT] = i.querySelector("strong.start").parentNode.innerText.match(/(.*)～(.*)/);
                     [st_Mo, st_D, st_H, st_Mi] = startT.match(/(\d{2})/g).map((e)=>{return parseInt(e)});
