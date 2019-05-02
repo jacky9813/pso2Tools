@@ -1,3 +1,14 @@
+# [0.1.7-beta]
+(TBC)
+## New features
+- Emergency module: Currently happening event will blink its background
+
+## Fixed / Changed
+- Fixed(Emergency Module):    Bad visual when using day time mode
+- Changed(ChatLog Module):    New GROUP channel is now supported
+- Changed(ClassLevel Module): Phantom is added
+- Changed(Emergency Module):  Live event is now supported
+
 # [0.1.6-beta]
 (2019-03-02)
 ## New module
@@ -35,7 +46,7 @@
 - ChatLog Module: reads your PSO2 Chat log and display it like in game, sort of
 - Links Module: provides a storage of links that often used while playing PSO2
 
-# Improved / Fixed
+## Improved / Fixed
 - Fixed: Stylesheet and window buttons won't load until all babel script has been compiled and loaded
 
 # [0.1.3-beta]
