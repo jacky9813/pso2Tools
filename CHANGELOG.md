@@ -1,5 +1,5 @@
 # [0.1.7-beta]
-(TBC)
+(2019-05-02)
 ## New features
 - Emergency module: Currently happening event will blink its background
 
