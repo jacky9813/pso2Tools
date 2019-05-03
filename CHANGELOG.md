@@ -1,3 +1,11 @@
+# [0.1.8-beta]
+(TBC)
+## New features
+Added(Emergency Module): New animation when any event is 15 mins before occuring
+
+## Fixed / Changed
+Changed(Emergency Module): Changed running event's animation to distinguish from preparing animation
+
 # [0.1.7-beta]
 (2019-05-02)
 ## New features

@@ -23,8 +23,11 @@ class Emergency extends pso2tools_module{
         tr.event-live:hover {
             background: #d78ea6;
         }
-        .blink{
-            animation: blinker 1s step-start infinite;
+        .running{
+            animation: blinker 0.5s step-start infinite;
+        }
+        .preparing{
+            animation: blinker 2s infinite alternate;
         }
         @keyframes blinker{
             50%{
@@ -101,7 +104,11 @@ class Emergency extends pso2tools_module{
                 emerList.forEach(function(el,i){
                     var happening = "";
                     if(timeNow.getTime() > el.start.getTime() && timeNow.getTime() < el.end.getTime())
-                        happening = "blink"
+                        happening = "running"
+                    else{
+                        if(timeNow.getTime() > el.start.getTime() - 900000)
+                            happening = "preparing"
+                    }
                     emerElem.push(<tr data-starttime={el.start.getTime()} data-endtime={el.end.getTime()} key={"Emergency_emer"+i.toString()} className={el.class + " " + happening}><td>{el.typeStr}</td><td>{el.content}</td><td>{el.start.toLocaleString()}</td><td>{"~"}</td><td>{el.end.toLocaleString()}</td></tr>);
                 })
                 ReactDOM.unmountComponentAtNode(document.getElementById("Emergency_TimeTable"));
@@ -128,9 +135,17 @@ class Emergency extends pso2tools_module{
                     // Since I can't remove it entirely, I'll just let it hidden from user
                     el.setAttribute("style","display:none;")
                 } else {
-                    if(timeNow.getTime() > startTime.getTime()){
-                        if(!el.className.match(/blink/)){
-                            el.className = el.className + " blink";
+                    var tN = timeNow.getTime(), sT = startTime.getTime()
+                    if(tN > sT){
+                        el.className = el.className.replace(/preparing/,"")
+                        if(!el.className.match(/running/)){
+                            el.className = el.className + " running";
+                        }
+                    } else {
+                        if(tN > (sT - 900000)){
+                            if(!el.className.match(/preparing/)){
+                                el.className = el.className + " preparing";
+                            }
                         }
                     }
                 }
