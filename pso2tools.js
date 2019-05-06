@@ -127,8 +127,8 @@ class pso2tools{
             }
             shell.openItem(path.join(key.getValue("InstallLocation"),"pso2_bin","pso2launcher.exe"))
         }
-        var tabPages = [<TabPage content={<div><table><tbody>{tbl}</tbody></table></div>} tabId="-1" key={"tab-1"}></TabPage>];
-        var tabButtons = [<button className="tablinks" onClick={openPSO2}>Open PSO2</button>,TabButton({"openTarget":-1, "label": "Overview", "tabBtnId":-1})];
+        var tabPages = [<TabPage content={<table><tbody>{tbl}</tbody></table>} tabId="Overview" key={"tab-overview"}></TabPage>];
+        var tabButtons = [<button className="tablinks" onClick={openPSO2} key="tabBtnOpenPSO2">Open PSO2</button>,TabButton({"openTarget":"Overview", "label": "Overview", "tabBtnId":"Overview"})];
 
         // rendering modules' tab pages
         for(i in this.loadedModules){
