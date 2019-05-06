@@ -67,7 +67,8 @@ function CreateWindow(){
         frame: false,
         //transparent: true,
         webPreferences: {
-            //experimentalFeatures: true
+            nodeIntegration: true
+            //,experimentalFeatures: true
         }
     });
 
