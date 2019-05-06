@@ -109,7 +109,25 @@ class pso2tools{
         }
         tbl.push(<tr key={"tblRowAddCh"}><td><input type={"text"} id={"addCharName"}/></td><td><button onClick={()=>{this.addCharacter(document.getElementById("addCharName").value);document.getElementById("addCharName").value="";this.render();}}>{"Add Character"}</button></td></tr>);
 
-        var tabPages = [<TabPage content={<table><tbody>{tbl}</tbody></table>} tabId="-1" key={"tab-1"}></TabPage>];
+        var openPSO2 = function(){
+            const Key = require("windows-registry").Key
+            const windef = require("windows-registry").windef
+            const path = require("path")
+            const shell = require("electron").shell
+            var key = null;
+            try {
+                key = new Key(windef.HKEY.HKEY_LOCAL_MACHINE,"SOFTWARE\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\http://pso2.jp/appid/release_is1",windef.KEY_ACCESS.KEY_READ)
+            } catch (e1) {
+                try {
+                    key = new Key(windef.HKEY.HKEY_LOCAL_MACHINE,"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\http://pso2.jp/appid/release_is1",windef.KEY_ACCESS.KEY_READ)
+                } catch (e2) {
+                    alert("Unable to find PSO2 executable");
+                    return;
+                }
+            }
+            shell.openItem(path.join(key.getValue("InstallLocation"),"pso2_bin","pso2launcher.exe"))
+        }
+        var tabPages = [<TabPage content={<div><button onClick={openPSO2}>Open PSO2</button><table><tbody>{tbl}</tbody></table></div>} tabId="-1" key={"tab-1"}></TabPage>];
         var tabButtons = [TabButton({"openTarget":-1, "label": "Overview", "tabBtnId":-1})];
 
         // rendering modules' tab pages
